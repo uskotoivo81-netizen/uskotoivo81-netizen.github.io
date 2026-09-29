@@ -1,0 +1,7 @@
+title: SpeedyIndex Notes
+description: Scripts and short guides on Google indexing, backlink checks and the SpeedyIndex API.
+url: https://uskotoivo81-netizen.github.io
+theme: minima
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
