@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>check whether a backlink is indexed in Google</title>
+<meta name="description" content="Learn how to check whether a backlink is indexed in Google and choose the right evidence for owned pages, external pages, and URL lists.">
+<link rel="canonical" href="/check-whether-backlink-indexed-google/">
+<style>
+:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;font-family:Georgia,"Iowan Old Style",serif;background:#0D1A2C;color:#e8eef6;line-height:1.65}
+a{color:#00C696}
+header,main,footer{width:min(920px,calc(100% - 32px));margin:0 auto}
+header{padding:28px 0 8px}
+nav{display:flex;flex-wrap:wrap;gap:10px 16px;padding-bottom:18px;border-bottom:1px solid #1d3348}
+nav a{font-family:Arial,sans-serif;font-size:14px;text-decoration:none}
+h1,h2,h3,h4{font-family:Arial,sans-serif;line-height:1.25;color:#fff}
+h1{font-size:clamp(28px,4vw,42px);margin:22px 0 12px}
+h2{font-size:26px;margin:32px 0 10px}
+h3{font-size:20px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-family:Arial,sans-serif;font-size:14px}
+th,td{border:1px solid #245043;padding:8px;vertical-align:top}
+th{background:#103528;color:#00C696;text-align:left}
+code{font-family:ui-monospace,monospace;color:#b8ffe9}
+pre{background:#112233;border:1px solid #1d3348;padding:14px;border-radius:4px;overflow-x:auto}
+ol,ul{padding-left:1.4em}
+li{margin-bottom:0.4em}
+footer{padding:28px 0 48px;border-top:1px solid #1d3348;margin-top:36px;font-family:Arial,sans-serif}
+</style>
+</head>
+<body>
+<header>
+<p>Backlink index checks</p>
+<nav>
+<a href="/">SpeedyIndex EN hub</a>
+<a href="https://en.speedyindex.com/google-index-checker/">Bulk index checker</a>
+<a href="https://en.speedyindex.com/how-to-check-backlink-indexation/">Backlink indexation guide</a>
+</nav>
+</header>
+<main>
+<h1>check whether a backlink is indexed in Google</h1>
+<p>To <strong>check whether a backlink is indexed in Google</strong>, inspect the page that contains the link, not the destination receiving it. The central question is whether Google has indexed that linking page. A link being visible in a browser only proves that the page and link are currently accessible; it does not establish what Google has stored in its index.</p>
+<p>The best method depends on ownership and scale. Search Console offers detailed indexed information for a URL in a property under the operator's control. External backlink pages usually fall outside that boundary. Public search checks can help with those URLs, but Google explicitly says search operators are constrained by indexing and retrieval limits. A careful audit therefore records the method, the URL variant, and whether the result is positive, negative, or inconclusive.</p>
+
+<h2>Define the object being checked</h2>
+<p>A backlink record contains at least two URLs:</p>
+<ul>
+<li><strong>Linking URL:</strong> the page where the hyperlink appears.</li>
+<li><strong>Target URL:</strong> the page to which the hyperlink points.</li>
+</ul>
+<p>Indexation checks belong against the linking URL. Before interpreting any index signal, open that page and confirm that the intended target is still linked. This separates two different failures: a missing link and a page that is not represented in Google's index.</p>
+<p>URL normalization also matters. Keep the full protocol, hostname, path, parameters when relevant, and trailing slash exactly as delivered. Google's documentation notes that <code>www</code> and non-<code>www</code> host forms are not equivalent queries. If a canonical URL is available through owned-property inspection, compare it with the submitted URL rather than treating every URL variant as a separate indexed document.</p>
+
+<h2>Technical comparison of six methods</h2>
+<table>
+<thead><tr><th>Method</th><th>What it actually checks</th><th>Access boundary</th><th>Best use</th><th>Main limitation</th></tr></thead>
+<tbody>
+<tr><td>1. Specific <code>site:</code> query</td><td>Search results associated with a domain, URL, or URL prefix</td><td>Public</td><td>Quick evidence for an external linking URL</td><td>Results are not exhaustive; absence is inconclusive</td></tr>
+<tr><td>2. URL Inspection indexed report</td><td>Google's indexed version and page-indexing details</td><td>URL must be in the current Search Console property</td><td>Detailed status for owned pages</td><td>Not available for arbitrary third-party backlink pages</td></tr>
+<tr><td>3. URL Inspection live test</td><td>Whether the current page appears accessible and potentially indexable</td><td>URL must be in the property</td><td>Checking a fix or current fetch conditions</td><td>It does not say that the live page is indexed</td></tr>
+<tr><td>4. URL Inspection API</td><td>Programmatic inspection of the indexed version</td><td>Authorized Search Console property</td><td>Repeatable checks for owned URL lists</td><td>Indexed version only, with per-site and per-project quotas</td></tr>
+<tr><td>5. Google Indexing API</td><td>Update or removal notifications for eligible page types</td><td>Authorized eligible content</td><td><code>JobPosting</code> or <code>BroadcastEvent</code> pages embedded in <code>VideoObject</code></td><td>It is not an ordinary-page index checker</td></tr>
+<tr><td>6. List-based index service</td><td>A list-oriented status workflow</td><td>Depends on the service</td><td>Reviewing many external linking URLs consistently</td><td>Results still need method-aware interpretation</td></tr>
+</tbody>
+</table>
+
+<h3>1. Specific <code>site:</code> query</h3>
+<p>Run a query using the full linking URL or the narrowest useful URL prefix:</p>
+<pre><code>site:https://support.google.com/webmasters/answer/9012289</code></pre>
+<p>Google says a specific query may help determine whether a URL is indexed and served. It also says an indexed URL can appear for a related <code>site:</code> query, but appearance is not assured. The operator does not necessarily return every indexed URL under a prefix, so it cannot provide a complete indexed-page count.</p>
+<p>Treat a matching result as useful public evidence. Treat no result as "not confirmed by this method," not as final proof of exclusion. Recheck the exact hostname, protocol, path, and slash form before escalating the finding.</p>
+
+<h3>2. URL Inspection indexed report</h3>
+<p>For a page inside a verified Search Console property, URL Inspection provides information about Google's indexed version. The report can show an overall index status, crawl information, and Google's selected canonical. This makes it the most diagnostic option in this comparison when the property is available.</p>
+<p>The ownership boundary is decisive for backlink auditing. Search Console requires the complete URL to sit inside the currently opened property. A backlink on an unrelated publisher's site cannot simply be entered into the auditor's own property. That is why public or bulk methods remain relevant for external placements.</p>
+<p>Also distinguish "URL is on Google" from visible placement for every search. Google describes that status as eligibility to appear, not a promise that the URL will appear in a particular result.</p>
+
+<h3>3. URL Inspection live test</h3>
+<p>The live test examines the current page rather than the stored indexed version. It can help after changes to access controls, indexing directives, or page delivery. Its result answers whether the Google inspection crawler can access the page for indexing and whether detectable conditions permit indexing.</p>
+<p>It does not answer whether the page is already indexed. Google notes that the live test does not cover every indexing issue and cannot predict canonical selection. Keep live and indexed results in separate columns; combining them turns an indexation audit into an indexability audit.</p>
+
+<h3>4. URL Inspection API</h3>
+<p>The URL Inspection API sends a <code>POST</code> request to:</p>
+<pre><code>https://searchconsole.googleapis.com/v1/urlInspection/index:inspect</code></pre>
+<p>The request supplies <code>inspectionUrl</code>, <code>siteUrl</code>, and an optional language code. The inspected URL must be under the Search Console property named by <code>siteUrl</code>, and authorization requires a supported Search Console OAuth scope.</p>
+<p>The API currently returns only information about the version in Google's index. It cannot run the live test. Google publishes URL Inspection quotas of 2,000 queries per day and 600 per minute per site, alongside per-project limits of 10,000,000 per day and 15,000 per minute. A large-site workflow should prioritize URLs and handle quota responses rather than assuming that one unrestricted full-catalog pass is available.</p>
+
+<h3>5. Google Indexing API</h3>
+<p>The Google Indexing API is often confused with URL Inspection, but it serves a different purpose. Google limits it to pages containing <code>JobPosting</code> or livestreaming <code>BroadcastEvent</code> data embedded in a <code>VideoObject</code>. Its update and delete calls notify Google about eligible URLs.</p>
+<p>Notification metadata reports whether Google received a notification. Google explicitly says that this metadata does not report when a URL was indexed or removed. It must not be presented as an index-status endpoint for ordinary articles, product pages, backlink pages, or general site inventories.</p>
+
+<h3>6. List-based index service</h3>
+<p>External backlink inventories create a practical gap: they may contain many URLs, while Search Console inspection is property-bound. A list workflow can preserve one row per linking URL and one result per run. Use a <a href="https://en.speedyindex.com/google-index-checker/">check Google index in bulk</a> workflow to process the linking URLs, then retain uncertain rows for targeted review.</p>
+<p>The output should remain evidence, not a substitute for diagnosis. Keep the original linking URL, normalized URL, result, check method, and observation date. If a row conflicts with a public result, inspect URL variants and avoid rewriting a negative observation as certainty.</p>
+
+<h2>A defensible backlink indexation workflow</h2>
+<ol>
+<li><strong>Export linking URLs.</strong> Exclude target URLs from the inspection column.</li>
+<li><strong>Deduplicate exact variants.</strong> Preserve a mapping back to every backlink record.</li>
+<li><strong>Confirm the link exists.</strong> Verify the linking page and intended destination before checking index status.</li>
+<li><strong>Separate owned and external pages.</strong> Use Search Console indexed inspection only where the URL belongs to an accessible property.</li>
+<li><strong>Choose a method by volume.</strong> A specific <code>site:</code> query suits a small public spot check; API or list workflows suit repeatable sets within their access boundaries.</li>
+<li><strong>Label uncertainty.</strong> A missing <code>site:</code> result is not exhaustive evidence. A live-test pass is not an indexed verdict.</li>
+<li><strong>Review canonical information where available.</strong> The inspected URL and Google-selected canonical may differ.</li>
+<li><strong>Document the decision.</strong> Record whether the next action is technical diagnosis, URL correction, recheck, or no change.</li>
+</ol>
+<p>For a focused explanation of linking-page checks, use the <a href="https://en.speedyindex.com/how-to-check-backlink-indexation/">backlink indexation guide</a>.</p>
+
+<h2>Reading conflicting results</h2>
+<p>Conflicts often reflect different questions. A live test can report that a current page is accessible while the indexed report still reflects an older version. A specific <code>site:</code> query can omit a URL because operator results are non-exhaustive. The URL Inspection API can report indexed-version data but cannot reproduce the live test.</p>
+<p>Use this order:</p>
+<ol>
+<li>Identify whether each result describes public search output, the indexed version, the live page, or an API notification.</li>
+<li>Confirm that every method used the same URL variant.</li>
+<li>Give owned-property indexed data its proper diagnostic weight without confusing eligibility with appearance.</li>
+<li>Mark unresolved external-page disagreements as inconclusive and preserve the evidence.</li>
+</ol>
+
+<h2>FAQ</h2>
+<h3>Can Search Console inspect any backlink page?</h3>
+<p>No. The URL must belong to the currently opened Search Console property. A third-party publisher URL normally requires a public or external list-checking method.</p>
+
+<h3>Does no <code>site:</code> result mean the backlink page is not indexed?</h3>
+<p>No. Google says <code>site:</code> results are not exhaustive and that an indexed URL is not assured to appear for a related query. A miss is an inconclusive signal.</p>
+
+<h3>Is the live URL test an index check?</h3>
+<p>No. It tests the current page for access and potential indexability. The indexed report describes Google's stored version; the two results answer different questions.</p>
+
+<h3>Can the URL Inspection API test the live page?</h3>
+<p>No. Google's API documentation states that only the indexed version is currently available through the endpoint.</p>
+
+<h3>Can the Google Indexing API check ordinary backlink pages?</h3>
+<p>No. It is restricted to eligible <code>JobPosting</code> and livestreaming <code>BroadcastEvent</code> pages, and notification status does not report index status.</p>
+
+<h2>Sources</h2>
+<ul>
+<li><a href="https://developers.google.com/search/docs/monitor-debug/search-operators/all-search-site">https://developers.google.com/search/docs/monitor-debug/search-operators/all-search-site</a></li>
+<li><a href="https://developers.google.com/search/docs/monitor-debug/search-operators">https://developers.google.com/search/docs/monitor-debug/search-operators</a></li>
+<li><a href="https://support.google.com/webmasters/answer/9012289">https://support.google.com/webmasters/answer/9012289</a></li>
+<li><a href="https://developers.google.com/webmaster-tools/v1/urlInspection.index/inspect">https://developers.google.com/webmaster-tools/v1/urlInspection.index/inspect</a></li>
+<li><a href="https://developers.google.com/webmaster-tools/limits">https://developers.google.com/webmaster-tools/limits</a></li>
+<li><a href="https://developers.google.com/search/apis/indexing-api/v3/using-api">https://developers.google.com/search/apis/indexing-api/v3/using-api</a></li>
+</ul>
+</main>
+<footer>
+<p><a href="https://en.speedyindex.com/">SpeedyIndex</a> — bulk indexing service for Google and Yandex.</p>
+</footer>
+</body>
+</html>
