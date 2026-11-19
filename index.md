@@ -4,6 +4,7 @@ title: SpeedyIndex Notes
 ---
 Short technical notes: how to check whether a URL is indexed in Google and Bing, how to work with the SpeedyIndex API, and what to do when a backlink donor page is missing from the index.
 
+- [Claude SEO: connect MCP servers and run checks in Claude](/claude-seo/)
 - [A cadence for desktop Google ranks: daily, weekly, or monthly](/how-often-small-site-checks-google-rankings/)
 - [Audit a list of bought backlinks with Python: status, noindex, X-Robots-Tag, robots.txt, canonical](/audit-bought-backlinks-python/)
 - [How to check if a page is indexed in Bing: 4 methods compared](/check-if-page-is-indexed-in-bing/)
