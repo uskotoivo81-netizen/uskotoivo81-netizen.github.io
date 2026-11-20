@@ -55,7 +55,7 @@ Claude web and desktop connection steps, checked on 19 November 2026:
 6. In a chat, open the **+** menu in the message box → Connectors → turn SpeedyIndex on.
 7. Test with: `What is my SpeedyIndex balance?` — if you see tokens and credits, the connector works.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/25wPhn3eaCM" title="How to connect SpeedyIndex MCP to Claude" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/RTmBI8AV2lw" title="How to connect SpeedyIndex MCP to Claude" frameborder="0" allowfullscreen></iframe>
 
 For Claude Code, add the remote server with:
 
